@@ -1,0 +1,11 @@
+.DS_Store
+*.swp
+
+# Local Claude Code settings — this repo's skills target claude.ai, not Claude Code
+.claude/
+
+# Build output: uploadable skill zips
+dist/
+
+# Generated reports — keep the skills, not their output
+*-report-*.html
