@@ -14,7 +14,9 @@ Consequences to respect when working here:
 
 ## Structure
 
-`skills/<name>/SKILL.md` plus `references/`. `package-skills.sh` zips each skill into `dist/` for upload via Settings → Capabilities → Skills; the archive must keep `SKILL.md` at `<skill-name>/SKILL.md`.
+`skills/<name>/SKILL.md` plus `references/`. `package-skills.sh` zips each skill into `dist/` for upload via Customize → Skills; the archive must keep the skill folder at its root, i.e. `SKILL.md` at `<skill-name>/SKILL.md`, not at the top level of the zip.
+
+Note: Anthropic documents a 200-character limit on the frontmatter `description` (and 64 on `name`). Both skills currently exceed it — see "Editing skills" below before shortening anything.
 
 ## Scope
 

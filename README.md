@@ -24,11 +24,55 @@ Region-specific sources are documented for Louisiana and New Orleans (assessor, 
 
 ## Install on claude.ai
 
-```
+### 1. Turn on code execution
+
+Skills don't appear until this is enabled — it's the sandbox they run in.
+
+- **Free, Pro, Max:** Settings → Capabilities → enable **Code execution and file creation**.
+- **Team, Enterprise:** an organization Owner enables both **Code execution and file creation** and **Skills** under Organization settings → Skills.
+
+Uploading your own skills requires a Pro, Max, Team, or Enterprise plan.
+
+### 2. Build the zips
+
+```bash
+git clone https://github.com/aqdaniels/claude-real-estate-skills.git
+cd claude-real-estate-skills
 ./package-skills.sh
 ```
 
-This writes `dist/property-analysis.zip` and `dist/multifamily-analysis.zip`. Upload each in **Settings → Capabilities → Skills**. Re-run the script and re-upload after editing a skill.
+This writes `dist/property-analysis.zip` and `dist/multifamily-analysis.zip`.
+
+Each archive holds the skill *folder* at its root, which is the structure the uploader requires:
+
+```
+property-analysis.zip
+└── property-analysis/
+    ├── SKILL.md
+    └── references/
+```
+
+If you zip by hand, don't zip the loose files — `SKILL.md` at the top level of the archive is rejected. On macOS, right-clicking the `property-analysis` folder → **Compress** produces the correct layout.
+
+### 3. Upload
+
+In claude.ai, open **Customize → Skills**, click **+**, choose to create/upload a skill, and select one zip. Repeat for the second. Both are private to your account.
+
+### 4. Use them
+
+You don't invoke skills by name — Claude reads the descriptions and triggers the right one from what you ask. Start a new conversation and paste an address or a listing URL:
+
+> 1234 Magazine St, New Orleans, LA 70130 — is this a good buy?
+
+> Run the numbers on this duplex: <listing URL>
+
+> Would this fourplex cash flow at 20% down?
+
+One unit routes to `property-analysis`; two or more to `multifamily-analysis`. Each produces a self-contained HTML report you can download and save as PDF. You can toggle either skill off in **Customize → Skills**.
+
+### Updating
+
+Skills don't auto-update from this repo. After `git pull` or editing a skill, re-run `./package-skills.sh` and re-upload the zip, replacing the existing skill.
 
 ## Layout
 

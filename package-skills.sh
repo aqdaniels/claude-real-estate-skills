@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 # Package each skill as a .zip for upload to claude.ai
-# (Settings → Capabilities → Skills → Upload skill).
+# (Customize → Skills → + → create/upload skill).
+#
+# Requires "Code execution and file creation" to be enabled first, under
+# Settings → Capabilities (Free/Pro/Max) or Organization settings → Skills
+# (Team/Enterprise).
 #
 # The zip must contain the skill directory itself, so that SKILL.md sits at
 # <skill-name>/SKILL.md inside the archive.
